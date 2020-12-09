@@ -36,30 +36,56 @@ namespace NamePicker
 
         }
 
-        private void nameEntered_TextChanged(object sender, EventArgs e)
+        private void enterName_TextChanged(object sender, EventArgs e)
         {
 
         }
 
+
+        //Añadir nombres a campo de texto
         private void addName_Click(object sender, EventArgs e)
         {
 
             String newName = "";
-            newName = nameEntered.Text;
+            newName = enterName.Text;
 
-            namesEntered.Items.Add(newName);
-            namesEnteredList.Add(newName);
-            nameEntered.Text = "";
+
+            if (enterName.TextLength==0 || enterName.Text.Trim() == "")
+            {
+         
+                MessageBox.Show("Ingrese un nombre");
+                enterName.Clear();
+            }
+            else
+            {
+                namesEntered.Items.Add(newName);
+                namesEnteredList.Add(newName);
+                enterName.Text = "";
+              
+            }
+            enterName.Focus();
+
+     
+
+
+
+
 
         }
 
-
+        //Eliminar nombres de lista
         private void removeName_Click(object sender, EventArgs e)
         {
+
+            
+            MessageBox.Show("¿Seguro que desea eliminar?");
 
             int selectedIndex = namesEntered.SelectedIndex;
             namesEntered.Items.RemoveAt(selectedIndex);
             namesEnteredList.RemoveAt(selectedIndex);
+
+            enterName.Focus();
+
 
         }
 
@@ -69,6 +95,8 @@ namespace NamePicker
 
         }
 
+
+        //Elegir un nombre al azar
         private void selectName_Click(object sender, EventArgs e)
         {
 
@@ -93,39 +121,90 @@ namespace NamePicker
             
         }
 
+        //Importar datos de archivo txt
         private void import_Click(object sender, EventArgs e)
         {
+
+
             OpenFileDialog open = new OpenFileDialog();
             open.Filter = "Documento de tento |*.txt";
-            open.Title = "Abrir lista";
+     
             open.FileName = "sin titulo 1";
             var result = open.ShowDialog();
 
             if (result == DialogResult.OK)
             {
+                
                 StreamReader read = new StreamReader(open.FileName);
                 namesEntered.Text = read.ReadToEnd();
-                read.Close();
+
+              read.Close();
             }
+            open.Dispose();
+
+
+           
         }
 
+        //Exportar/guardar datos en archivo txt
         private void export_Click(object sender, EventArgs e)
         {
-            SaveFileDialog save = new SaveFileDialog();
-            save.Filter = "Documento de tento |*.txt";
-            save.Title = "Guardar lista";
-            save.FileName = "sin titulo 1";
-            var result = save.ShowDialog();
 
-            if(result==DialogResult.OK)
+            SaveFileDialog exp = new SaveFileDialog();
+            exp.Filter = "Documento de tento |*.txt";
+            exp.FileName = "sin titulo 1";
+            if (exp.ShowDialog()==DialogResult.OK)
             {
-                StreamWriter write = new StreamWriter(save.FileName);
-                foreach (object line in nameEntered.Lines)
+                
+                StreamWriter writer = new StreamWriter(exp.FileName);
+                for(int i=0;i<namesEntered.Items.Count; i++)
                 {
-                    write.WriteLine(line);
+                    writer.WriteLine((string)namesEntered.Items[i]);
+                    
                 }
-                write.Close();
+                writer.Close();
             }
+            exp.Dispose();
+
+
+
+
+
+
+
+
+           
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+          private bool validateData()
+           {
+               bool ok = true;
+
+               if (enterName.Text.Length==0 || enterName.Text.Trim()==" ") 
+               {
+                   ok = false;
+                   ErrorProvider.ReferenceEquals(enterName, "Ingresar Nombre");
+               }
+               return ok;
+
+           }
+
+     
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+        
+            MessageBox.Show("¿Seguro que desea eliminar?");
+
+            namesEntered.Items.Clear();
         }
     }
 }
+
+

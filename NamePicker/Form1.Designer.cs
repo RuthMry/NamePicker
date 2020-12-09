@@ -1,4 +1,6 @@
 ﻿
+using System;
+
 namespace NamePicker
 {
     partial class Form1
@@ -29,25 +31,27 @@ namespace NamePicker
         /// </summary>
         private void InitializeComponent()
         {
-            this.nameEntered = new System.Windows.Forms.TextBox();
+            this.enterName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.addName = new System.Windows.Forms.Button();
             this.removeName = new System.Windows.Forms.Button();
-            this.namesEntered = new System.Windows.Forms.ListBox();
             this.selectedName = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.selectName = new System.Windows.Forms.Button();
             this.import = new System.Windows.Forms.Button();
             this.export = new System.Windows.Forms.Button();
+            this.namesEntered = new System.Windows.Forms.ListBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.clean = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // nameEntered
+            // enterName
             // 
-            this.nameEntered.Location = new System.Drawing.Point(12, 42);
-            this.nameEntered.Name = "nameEntered";
-            this.nameEntered.Size = new System.Drawing.Size(171, 20);
-            this.nameEntered.TabIndex = 0;
-            this.nameEntered.TextChanged += new System.EventHandler(this.nameEntered_TextChanged);
+            this.enterName.Location = new System.Drawing.Point(12, 42);
+            this.enterName.Name = "enterName";
+            this.enterName.Size = new System.Drawing.Size(171, 20);
+            this.enterName.TabIndex = 0;
+            this.enterName.TextChanged += new System.EventHandler(this.nameEntere_TextChanged);
             // 
             // label1
             // 
@@ -79,15 +83,6 @@ namespace NamePicker
             this.removeName.UseVisualStyleBackColor = true;
             this.removeName.Click += new System.EventHandler(this.removeName_Click);
             // 
-            // namesEntered
-            // 
-            this.namesEntered.FormattingEnabled = true;
-            this.namesEntered.Location = new System.Drawing.Point(220, 13);
-            this.namesEntered.Name = "namesEntered";
-            this.namesEntered.Size = new System.Drawing.Size(255, 264);
-            this.namesEntered.TabIndex = 4;
-            this.namesEntered.SelectedIndexChanged += new System.EventHandler(this.namesEntered_SelectedIndexChanged);
-            // 
             // selectedName
             // 
             this.selectedName.FormattingEnabled = true;
@@ -109,7 +104,7 @@ namespace NamePicker
             // 
             // selectName
             // 
-            this.selectName.Location = new System.Drawing.Point(29, 253);
+            this.selectName.Location = new System.Drawing.Point(13, 253);
             this.selectName.Name = "selectName";
             this.selectName.Size = new System.Drawing.Size(75, 23);
             this.selectName.TabIndex = 7;
@@ -119,7 +114,7 @@ namespace NamePicker
             // 
             // import
             // 
-            this.import.Location = new System.Drawing.Point(481, 221);
+            this.import.Location = new System.Drawing.Point(459, 225);
             this.import.Name = "import";
             this.import.Size = new System.Drawing.Size(75, 23);
             this.import.TabIndex = 8;
@@ -129,7 +124,7 @@ namespace NamePicker
             // 
             // export
             // 
-            this.export.Location = new System.Drawing.Point(481, 254);
+            this.export.Location = new System.Drawing.Point(459, 254);
             this.export.Name = "export";
             this.export.Size = new System.Drawing.Size(75, 23);
             this.export.TabIndex = 9;
@@ -137,11 +132,43 @@ namespace NamePicker
             this.export.UseVisualStyleBackColor = true;
             this.export.Click += new System.EventHandler(this.export_Click);
             // 
+            // namesEntered
+            // 
+            this.namesEntered.FormattingEnabled = true;
+            this.namesEntered.Location = new System.Drawing.Point(198, 13);
+            this.namesEntered.Name = "namesEntered";
+            this.namesEntered.Size = new System.Drawing.Size(244, 264);
+            this.namesEntered.TabIndex = 4;
+            this.namesEntered.SelectedIndexChanged += new System.EventHandler(this.namesEntered_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.Location = new System.Drawing.Point(195, 284);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(202, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Recuerde Guardar la lista antes de usarla";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
+            // 
+            // clean
+            // 
+            this.clean.Location = new System.Drawing.Point(391, 279);
+            this.clean.Name = "clean";
+            this.clean.Size = new System.Drawing.Size(51, 23);
+            this.clean.TabIndex = 11;
+            this.clean.Text = "Limpiar";
+            this.clean.UseVisualStyleBackColor = true;
+            this.clean.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(593, 326);
+            this.ClientSize = new System.Drawing.Size(545, 311);
+            this.Controls.Add(this.clean);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.export);
             this.Controls.Add(this.import);
             this.Controls.Add(this.selectName);
@@ -151,8 +178,9 @@ namespace NamePicker
             this.Controls.Add(this.removeName);
             this.Controls.Add(this.addName);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.nameEntered);
+            this.Controls.Add(this.enterName);
             this.Name = "Form1";
+            this.ShowIcon = false;
             this.Text = "Name Picker";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -160,18 +188,25 @@ namespace NamePicker
 
         }
 
+        private void nameEntere_TextChanged(object sender, EventArgs e)
+        {
+         // throw new NotImplementedException();
+        }
+
         #endregion
 
-        private System.Windows.Forms.TextBox nameEntered;
+        private System.Windows.Forms.TextBox enterName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button addName;
         private System.Windows.Forms.Button removeName;
-        private System.Windows.Forms.ListBox namesEntered;
         private System.Windows.Forms.ListBox selectedName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button selectName;
         private System.Windows.Forms.Button import;
         private System.Windows.Forms.Button export;
+        private System.Windows.Forms.ListBox namesEntered;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button clean;
     }
 }
 
