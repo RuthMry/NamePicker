@@ -127,40 +127,33 @@ namespace NamePicker
 
         }
 
-
-
-
-
-
-
         
         private void import_Click(object sender, EventArgs e)
         {
 
 
-                
-                OpenFileDialog open = new OpenFileDialog();
-                open.Filter = "Documento de tento |*.txt";
+        OpenFileDialog open = new OpenFileDialog();
+        open.Filter = "Documento de tento |*.txt";
 
-     
-                var result = open.ShowDialog();
 
-                if (result == DialogResult.OK)
-                {
+        var result = open.ShowDialog();
 
-                    StreamReader read = new StreamReader(open.FileName);
-                    namesEntered.Text = read.ReadToEnd();
-                    
-                    
-                
+        if (result == DialogResult.OK)
+        {
 
-                  read.Close();
-                }
-                open.Dispose();
+            StreamReader read = new StreamReader(open.FileName);
+            namesEntered.Text = read.ReadToEnd();
 
 
 
-            }
+
+          read.Close();
+        }
+        open.Dispose();
+
+
+
+    }
 
 
             ///
