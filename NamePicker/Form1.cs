@@ -31,10 +31,16 @@ namespace NamePicker
         private void label1_Click(object sender, EventArgs e)
         {
 
-            
+
 
 
         }
+
+
+
+
+
+
 
         private void enterName_TextChanged(object sender, EventArgs e)
         {
@@ -50,22 +56,22 @@ namespace NamePicker
             newName = enterName.Text;
 
 
-            if (enterName.TextLength==0 || enterName.Text.Trim() == "")
+            if (enterName.TextLength == 0 || enterName.Text.Trim() == "")
             {
-         
+
                 MessageBox.Show("Ingrese un nombre");
-                enterName.Clear();
+                enterName.Clear(); //eliminar los espacios en blanco ingresados
             }
             else
             {
                 namesEntered.Items.Add(newName);
                 namesEnteredList.Add(newName);
                 enterName.Text = "";
-              
-            }
-            enterName.Focus();
 
-     
+            }
+            enterName.Focus(); //ubicar el cursor en el ingreso de datos
+
+
 
 
 
@@ -77,7 +83,7 @@ namespace NamePicker
         private void removeName_Click(object sender, EventArgs e)
         {
 
-            
+
             MessageBox.Show("¿Seguro que desea eliminar?");
 
             int selectedIndex = namesEntered.SelectedIndex;
@@ -118,53 +124,68 @@ namespace NamePicker
 
         private void selectedName_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
         }
 
-        //Importar datos de archivo txt
+
+
+
+
+
+
+        
         private void import_Click(object sender, EventArgs e)
         {
 
 
-            OpenFileDialog open = new OpenFileDialog();
-            open.Filter = "Documento de tento |*.txt";
+                
+                OpenFileDialog open = new OpenFileDialog();
+                open.Filter = "Documento de tento |*.txt";
+
      
-            open.FileName = "sin titulo 1";
-            var result = open.ShowDialog();
+                var result = open.ShowDialog();
 
-            if (result == DialogResult.OK)
-            {
-                
-                StreamReader read = new StreamReader(open.FileName);
-                namesEntered.Text = read.ReadToEnd();
-
-              read.Close();
-            }
-            open.Dispose();
-
-
-           
-        }
-
-        //Exportar/guardar datos en archivo txt
-        private void export_Click(object sender, EventArgs e)
-        {
-
-            SaveFileDialog exp = new SaveFileDialog();
-            exp.Filter = "Documento de tento |*.txt";
-            exp.FileName = "sin titulo 1";
-            if (exp.ShowDialog()==DialogResult.OK)
-            {
-                
-                StreamWriter writer = new StreamWriter(exp.FileName);
-                for(int i=0;i<namesEntered.Items.Count; i++)
+                if (result == DialogResult.OK)
                 {
-                    writer.WriteLine((string)namesEntered.Items[i]);
+
+                    StreamReader read = new StreamReader(open.FileName);
+                    namesEntered.Text = read.ReadToEnd();
                     
+                    
+                
+
+                  read.Close();
                 }
-                writer.Close();
+                open.Dispose();
+
+
+
             }
-            exp.Dispose();
+
+
+            ///
+
+            
+
+            //Exportar/guardar datos en archivo txt
+            private void export_Click(object sender, EventArgs e)
+            {
+
+                SaveFileDialog exp = new SaveFileDialog();
+                exp.Filter = "Documento de tento |*.txt";
+                exp.FileName = "sin titulo 1";
+                if (exp.ShowDialog() == DialogResult.OK)
+                {
+
+                    StreamWriter writer = new StreamWriter(exp.FileName);
+                    for (int i = 0; i < namesEntered.Items.Count; i++)
+                    {
+                        writer.WriteLine((string)namesEntered.Items[i]);
+
+                    }
+                    writer.Close();
+                }
+                exp.Dispose();
 
 
 
@@ -173,38 +194,49 @@ namespace NamePicker
 
 
 
-           
-        }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
+            }
 
 
-          private bool validateData()
-           {
-               bool ok = true;
+            
+            private void label3_Click(object sender, EventArgs e)
+            {
 
-               if (enterName.Text.Length==0 || enterName.Text.Trim()==" ") 
+            }
+
+
+
+
+
+            /*
+              private bool validateData()
                {
-                   ok = false;
-                   ErrorProvider.ReferenceEquals(enterName, "Ingresar Nombre");
-               }
-               return ok;
+                   bool ok = true;
 
-           }
+                   if (enterName.Text.Length==0 || enterName.Text.Trim()==" ") 
+                   {
+                       ok = false;
+                       ErrorProvider.ReferenceEquals(enterName, "Ingresar Nombre");
+                   }
+                   return ok;
 
-     
+               }*/
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-        
-            MessageBox.Show("¿Seguro que desea eliminar?");
 
-            namesEntered.Items.Clear();
+
+
+
+            ///
+
+            
+            private void button1_Click_1(object sender, EventArgs e)
+            {
+
+                MessageBox.Show("¿Seguro que desea eliminar?");
+
+                namesEntered.Items.Clear();
+            }
         }
     }
-}
 
 

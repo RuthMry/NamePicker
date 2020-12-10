@@ -214,9 +214,14 @@ namespace NamePicker
 
         }
 
+
+
+       
+        
         private void nameEntere_TextChanged(object sender, EventArgs e)
         {
-         // throw new NotImplementedException();
+            
+            // throw new NotImplementedException();
         }
 
         #endregion
